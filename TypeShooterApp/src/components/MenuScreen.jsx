@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import logoImg from '../assets/logo.png'
 
 export default function MenuScreen({ onNormal, onSurvival, onVersus, onLeaderboard }) {
   const canvasRef = useRef(null)
@@ -77,17 +78,16 @@ export default function MenuScreen({ onNormal, onSurvival, onVersus, onLeaderboa
       <div className="menu-bg"><canvas ref={canvasRef} /></div>
       <div className="menu-content">
         <div className="logo">
-          <div className="logo-icon">
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="20" width="22" height="14" rx="4" fill="#6c63ff"/>
-              <rect x="8" y="26" width="10" height="2" rx="1" fill="#fff"/>
-              <polygon points="24,27 44,20 44,34" fill="#a78bfa"/>
-              <circle cx="50" cy="18" r="7" fill="#f472b6" opacity="0.9"/>
-              <circle cx="50" cy="34" r="7" fill="#f472b6" opacity="0.7"/>
-              <circle cx="50" cy="50" r="7" fill="#f472b6" opacity="0.45"/>
-            </svg>
-          </div>
-          <h1 className="logo-title">Type<span>Shooter</span></h1>
+          <img
+            src={logoImg}
+            alt="TypeShooter"
+            style={{
+              width: 220,
+              height: 'auto',
+              marginBottom: 8,
+              filter: 'drop-shadow(0 0 24px rgba(108,99,255,0.55))',
+            }}
+          />
           <p className="logo-sub">Your words are your weapons</p>
         </div>
 

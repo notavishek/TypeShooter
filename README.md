@@ -1,8 +1,14 @@
-# 🚀 TypeShooter
+<p align="center">
+  <img src="https://raw.githubusercontent.com/notavishek/TypeShooter/main/TypeShooterApp/src/assets/logo.png" alt="TypeShooter Logo" width="280" />
+</p>
 
-> **Type to survive.** A space shooter where your keyboard is your only weapon — every correct keystroke fires a bullet at the alien fleet advancing toward your ship.
+<p align="center">
+  <strong>Type to survive.</strong> A space shooter where your keyboard is your only weapon — every correct keystroke fires a bullet at the alien fleet advancing toward your ship.
+</p>
 
-🌐 **Live Demo → [type-shooter.vercel.app](https://type-shooter.vercel.app)**
+<p align="center">
+  🌐 <strong><a href="https://type-shooter.vercel.app">type-shooter.vercel.app</a></strong>
+</p>
 
 ---
 
