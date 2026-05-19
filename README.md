@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/notavishek/TypeShooter/main/TypeShooterApp/src/assets/logo.png" alt="TypeShooter Logo" width="280" />
+  <img src="https://raw.githubusercontent.com/notavishek/TypeShooter/main/TypeShooterApp/src/assets/logo.png" alt="TypeShooter Logo" width="480" />
 </p>
 
 <p align="center">

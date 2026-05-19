@@ -82,10 +82,11 @@ export default function MenuScreen({ onNormal, onSurvival, onVersus, onLeaderboa
             src={logoImg}
             alt="TypeShooter"
             style={{
-              width: 220,
+              width: 380,
+              maxWidth: '80vw',
               height: 'auto',
-              marginBottom: 8,
-              filter: 'drop-shadow(0 0 24px rgba(108,99,255,0.55))',
+              marginBottom: 4,
+              filter: 'drop-shadow(0 0 32px rgba(108,99,255,0.65))',
             }}
           />
           <p className="logo-sub">Your words are your weapons</p>
