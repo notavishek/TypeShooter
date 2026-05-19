@@ -97,10 +97,13 @@ html, body, #root, .app {
 .logo { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .logo-icon svg { width: 88px; height: 88px; filter: drop-shadow(0 0 28px #6c63ffaa); }
 .logo-title {
-  font-size: clamp(48px, 8vw, 80px); font-weight: 900; letter-spacing: -3px;
-  color: #fff; line-height: 1; text-align: center;
+  font-size: clamp(48px, 8vw, 80px); font-weight: 900; letter-spacing: -2px;
+  background: linear-gradient(135deg, #3bb9ff 0%, #6c63ff 60%, #a78bfa 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1; text-align: center; margin: 0;
 }
-.logo-title span { color: var(--primary2); }
+.logo-title span { -webkit-text-fill-color: transparent; }
 .logo-sub { font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--dim); margin-top: 2px; }
 
 .menu-modes { display: flex; flex-direction: column; gap: 10px; width: 100%; }

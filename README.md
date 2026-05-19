@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/notavishek/TypeShooter/main/TypeShooterApp/src/assets/logo.png" alt="TypeShooter Logo" width="480" />
+  <img src="https://raw.githubusercontent.com/notavishek/TypeShooter/main/TypeShooterApp/src/assets/title%20logo.png" alt="TypeShooter" width="200" />
 </p>
+
+<h1 align="center">TypeShooter</h1>
 
 <p align="center">
   <strong>Type to survive.</strong> A space shooter where your keyboard is your only weapon — every correct keystroke fires a bullet at the alien fleet advancing toward your ship.

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import logoImg from '../assets/logo.png'
+import titleLogoImg from '../assets/title logo.png'
 
 export default function MenuScreen({ onNormal, onSurvival, onVersus, onLeaderboard }) {
   const canvasRef = useRef(null)
@@ -79,16 +79,19 @@ export default function MenuScreen({ onNormal, onSurvival, onVersus, onLeaderboa
       <div className="menu-content">
         <div className="logo">
           <img
-            src={logoImg}
-            alt="TypeShooter"
+            src={titleLogoImg}
+            alt="TypeShooter icon"
             style={{
-              width: 380,
-              maxWidth: '80vw',
+              width: 140,
+              maxWidth: '40vw',
               height: 'auto',
-              marginBottom: 4,
-              filter: 'drop-shadow(0 0 32px rgba(108,99,255,0.65))',
+              marginBottom: 12,
+              filter: 'drop-shadow(0 0 28px rgba(59,185,255,0.7))',
             }}
           />
+          <h1 className="logo-title">
+            Type<span>Shooter</span>
+          </h1>
           <p className="logo-sub">Your words are your weapons</p>
         </div>
 
