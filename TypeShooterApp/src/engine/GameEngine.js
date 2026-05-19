@@ -9,7 +9,7 @@ const DIFF_CFG = {
   //         speed px/s  spawnMs  HP  waveSize
   easy:     { alienSpeed: 28,   spawnMs: 4500, alienHp: 1, waveSize: 4  },
   medium:   { alienSpeed: 70,   spawnMs: 1800, alienHp: 2, waveSize: 7  },
-  hard:     { alienSpeed: 145,  spawnMs: 950,  alienHp: 3, waveSize: 12 },
+  hard:     { alienSpeed: 165,  spawnMs: 750,  alienHp: 3, waveSize: 12 },
   survival: { alienSpeed: 55,   spawnMs: 2600, alienHp: 2, waveSize: 5  },
 }
 
