@@ -1,42 +1,42 @@
 /* ── Paragraphs pool ───────────────────────────────────────
    Layout:
-     [0  – 24]  EASY   — short  (~50–80 chars)
-     [25 – 59]  MEDIUM — medium (~100–160 chars)
-     [60 – 104] HARD   — long   (~180–320 chars)
+     [0  – 24]  EASY   — medium-length (~100–150 chars), slow aliens
+     [25 – 59]  MEDIUM — medium-length (~100–160 chars), need ~50 WPM
+     [60 – 104] HARD   — long (~200–320 chars), need ~80 WPM
 
-   Easy  mode → pool [0–24]    (quick paragraph, low pressure time)
-   Medium mode → pool [25–59]  (need ~50 WPM sustained)
-   Hard  mode → pool [60–104]  (long paragraph = aliens have time to overwhelm)
+   Easy  mode → pool [0–24]
+   Medium mode → pool [25–59]
+   Hard  mode → pool [60–104]
 ──────────────────────────────────────────────────────────── */
 
 export const PARAGRAPHS = [
 
-  // ── EASY (0–24) — short & punchy ──────────────────────────
-  "the quick brown fox jumps over the lazy dog and runs away",
-  "pack my box with five dozen liquor jugs for the party tonight",
-  "bright vixens jump dozing fowl quack across the muddy field",
-  "how vexingly quick daft zebras jump over the sleeping fox here",
-  "fix the problem quickly with jets before the storm arrives",
-  "the five boxing wizards jump quickly across the glowing stage",
-  "jackdaws love my big sphinx of quartz near the old river bank",
-  "we promptly judged antique ivory buckles for the big show",
-  "sixty zippers were quickly picked from the woven jute bag here",
-  "sphinx of black quartz judge my vow and let the ceremony begin",
-  "a wizard named kix quickly jumped on the flying zebra and flew",
-  "jived fox nymphs grab quick waltz beats while the crowd cheers",
-  "crazy fredrick bought many expensive jewels hidden in the vault",
-  "the job requires extra pluck and zeal from every young worker",
-  "quizzical twins proved my hijack bug fix worked on the server",
-  "glib jocks quiz nymph to vex dwarf kings of the underground",
-  "we need to fix the blurry quadrant zones before jackpot expires",
-  "go lazy fat vixen be shrewd jump quickly and defend your home",
-  "cozy lummox gives smart squid who asks for job penalties today",
-  "all questions asked by five watched experts amazed the judge",
-  "the early bird catches the worm but the second mouse gets cheese",
-  "type fast think faster keep your eyes on the moving targets",
-  "every keystroke matters when aliens are closing in on your ship",
-  "velocity is the key to survival in the dark reaches of space",
-  "quick fingers light touch smooth rhythm beat the alien march",
+  // ── EASY (0–24) — relaxed medium-length paragraphs ────────
+  "the sun rose slowly over the hills casting long golden shadows across the quiet valley below where nothing stirred yet",
+  "she walked through the park every morning watching the seasons change one small detail at a time without ever getting bored",
+  "the library was her favourite place in the whole city because it was the only room where silence was considered a kindness",
+  "learning a new skill takes time and patience and the willingness to look foolish for a while before things start to click",
+  "the dog waited by the door every afternoon at the same time which was either loyalty or a very precise internal clock",
+  "autumn leaves fell slowly across the empty bench where two old friends had once sat talking for hours without noticing",
+  "the smell of fresh bread in the morning is one of those small reliable pleasures that makes getting up feel worthwhile",
+  "she had written three pages before realising the pen had run out of ink halfway through which explained quite a lot",
+  "the clouds moved quickly across the sky as though they had somewhere important to be and were already slightly late",
+  "he kept a journal not because he thought anyone would read it but because writing things down made them feel more real",
+  "the cat sat on the warm keyboard ignoring the cursor blinking on screen as if the machine existed purely for its comfort",
+  "rain on a rooftop at night is the kind of sound that makes it easier to think or at least easier to stop thinking entirely",
+  "the old bridge had stood for two hundred years and showed no signs of stopping which was more than could be said for most things",
+  "cooking a meal for someone is one of the quieter ways of saying that you value their presence in your daily life",
+  "the stars are always there even when you cannot see them which is a fact that is either comforting or completely irrelevant",
+  "she finished the chapter just as the train pulled into the station which felt like the kind of timing that only happens in books",
+  "the empty notebook sat on the desk waiting and the hardest part was always figuring out what to write on the very first page",
+  "music from an open window floated down into the street below mixing with traffic sounds until it became something entirely new",
+  "the best conversations are the ones where you forget to check your phone and only notice the time because the light has changed",
+  "every morning the city slowly woke up and filled with sound and movement and the brief illusion that today would be different",
+  "the garden had been neglected for one whole season and was now doing exactly what it wanted which turned out to be quite beautiful",
+  "he read the message three times before replying not because it was complicated but because the right words mattered to him",
+  "the bakery closed at noon on Saturdays which everyone in the neighbourhood knew and which made Saturday mornings feel urgent",
+  "she took the long way home not because it was faster but because it passed a street she liked and she was in no rush today",
+  "the photograph had faded at the edges but the faces in the centre were still sharp and recognisable after all these quiet years",
 
   // ── MEDIUM (25–59) — requires ~50 WPM sustained ───────────
   "the early morning light filtered through the curtains as she sat thinking about everything that lay ahead of her today",
