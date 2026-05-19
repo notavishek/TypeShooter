@@ -6,10 +6,11 @@
 ═══════════════════════════════════════════════ */
 
 const DIFF_CFG = {
-  easy:     { alienSpeed: 30,  spawnMs: 4000, alienHp: 1, waveSize: 4 },
-  medium:   { alienSpeed: 60,  spawnMs: 2600, alienHp: 2, waveSize: 6 },
-  hard:     { alienSpeed: 110, spawnMs: 1400, alienHp: 3, waveSize: 8 },
-  survival: { alienSpeed: 55,  spawnMs: 2800, alienHp: 2, waveSize: 5 },
+  //         speed px/s  spawnMs  HP  waveSize
+  easy:     { alienSpeed: 28,   spawnMs: 4500, alienHp: 1, waveSize: 4  },
+  medium:   { alienSpeed: 70,   spawnMs: 1800, alienHp: 2, waveSize: 7  },
+  hard:     { alienSpeed: 145,  spawnMs: 950,  alienHp: 3, waveSize: 12 },
+  survival: { alienSpeed: 55,   spawnMs: 2600, alienHp: 2, waveSize: 5  },
 }
 
 export class GameEngine {
