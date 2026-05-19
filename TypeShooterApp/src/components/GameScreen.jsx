@@ -76,10 +76,53 @@ function WpmGraph({ data }) {
   )
 }
 
+/* ── Save-to-leaderboard section ─────────────────────────── */
+function SaveSection({ wpm, accuracy, errors, diff, mode }) {
+  const [name,  setName]  = useState(() => localStorage.getItem('ts_username') || '')
+  const [state, setState] = useState('idle')  // idle | saving | saved | error
+
+  async function handleSave() {
+    if (state === 'saved') return
+    setState('saving')
+    const trimmed = name.trim() || 'Player'
+    localStorage.setItem('ts_username', trimmed)
+    const res = await saveScore(mode, { username: trimmed, wpm, accuracy, errors, diff })
+    setState(res?.error ? 'error' : 'saved')
+  }
+
+  if (state === 'saved') return (
+    <span style={{ color: '#34d399', fontSize: 13, fontWeight: 700 }}>✅ Saved to leaderboard!</span>
+  )
+
+  return (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+      <input
+        type="text" value={name} maxLength={20}
+        onChange={e => setName(e.target.value)}
+        onKeyDown={e => e.key === 'Enter' && state !== 'saving' && handleSave()}
+        placeholder="Your name…"
+        style={{
+          background: 'rgba(0,0,0,0.4)', border: '1px solid var(--border)',
+          borderRadius: 8, padding: '7px 12px', color: '#fff',
+          fontFamily: 'Outfit, sans-serif', fontSize: 13, width: 140, outline: 'none',
+        }}
+      />
+      <button
+        className="btn-ghost"
+        onClick={handleSave}
+        disabled={state === 'saving'}
+        style={{ padding: '7px 14px', fontSize: 13 }}
+      >
+        {state === 'saving' ? '…' : state === 'error' ? '⚠️ Retry' : '💾 Save Score'}
+      </button>
+    </div>
+  )
+}
+
 /* ── Shared Results Overlay ───────────────────────────────── */
 function ResultsScreen({
   title, wpm, accuracy, errors, timeMs, wpmTimeline,
-  extraStats, diff, onRestart, onMenu, overlayId,
+  extraStats, diff, mode, onRestart, onMenu, overlayId,
 }) {
   const timeSec = (timeMs / 1000).toFixed(1)
 
@@ -140,14 +183,17 @@ function ResultsScreen({
 
         {/* Bottom row */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
-          <span style={{ fontSize: 13, color: 'var(--dim)' }}>
-            {diff
-              ? <>Difficulty: <span style={{
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {diff && (
+              <span style={{ fontSize: 11, color: 'var(--dim)', letterSpacing: 1 }}>
+                Difficulty: <span style={{
                   color: diff === 'easy' ? 'var(--green)' : diff === 'medium' ? 'var(--yellow)' : 'var(--red)',
                   fontWeight: 700, textTransform: 'uppercase',
-                }}>{diff}</span></>
-              : null}
-          </span>
+                }}>{diff}</span>
+              </span>
+            )}
+            <SaveSection wpm={wpm} accuracy={accuracy} errors={errors} diff={diff} mode={mode} />
+          </div>
           <div className="btn-row" style={{ margin: 0 }}>
             <button className="btn-primary" id="btn-result-restart" onClick={onRestart}>Play Again</button>
             <button className="btn-ghost"   id="btn-result-menu"   onClick={onMenu}>Main Menu</button>
@@ -258,7 +304,6 @@ export default function GameScreen({ config, onMenu }) {
       stopSampling()
       engineRef.current?.stop()
       const elapsed = Date.now() - (paraStartRef.current || Date.now())
-      saveScore('normal', { name: 'Player', wpm: currentWpmRef.current, diff })
       playSound('win')
       setGameDone({
         title:    '🏁 Paragraph Complete',
@@ -267,6 +312,7 @@ export default function GameScreen({ config, onMenu }) {
         errors:   currentErrRef.current,
         timeMs:   elapsed,
         extraStats: null,
+        mode:     'normal',
       })
     } else {
       // Survival: clear input, load next paragraph, keep WPM history going
@@ -299,15 +345,14 @@ export default function GameScreen({ config, onMenu }) {
         stopSampling()
         playSound('game_over')
         const elapsed = Date.now() - (sessionStartRef.current || Date.now())
-        saveScore(mode === 'survival' ? 'survival' : 'normal', {
-          name: 'Player', wpm: currentWpmRef.current, diff,
-        })
+        const resultMode = mode === 'survival' ? 'survival' : 'normal'
         setGameDone({
           title:     mode === 'survival' ? '💀 Survival Over' : '💥 Game Over',
           wpm:       currentWpmRef.current,
           accuracy:  currentAccRef.current,
           errors:    currentErrRef.current,
           timeMs:    elapsed,
+          mode:      resultMode,
           extraStats: mode === 'survival'
             ? [{ label: 'Waves', value: currentWaveRef.current }]
             : [
@@ -351,13 +396,14 @@ export default function GameScreen({ config, onMenu }) {
       onGameOver: (info) => {
         stopSampling(); playSound('game_over')
         const elapsed = Date.now() - (sessionStartRef.current || Date.now())
-        saveScore(mode === 'survival' ? 'survival' : 'normal', { name: 'Player', wpm: currentWpmRef.current, diff })
+        const resultMode = mode === 'survival' ? 'survival' : 'normal'
         setGameDone({
           title:     mode === 'survival' ? '💀 Survival Over' : '💥 Game Over',
           wpm:       currentWpmRef.current,
           accuracy:  currentAccRef.current,
           errors:    currentErrRef.current,
           timeMs:    elapsed,
+          mode:      resultMode,
           extraStats: mode === 'survival'
             ? [{ label: 'Waves', value: currentWaveRef.current }]
             : [{ label: 'Wave', value: info.wave }, { label: 'Score', value: info.score }],
@@ -437,6 +483,7 @@ export default function GameScreen({ config, onMenu }) {
             wpmTimeline={wpmTimeline}
             extraStats={gameDone.extraStats}
             diff={diff}
+            mode={gameDone.mode || mode}
             overlayId="results-overlay"
             onRestart={handleRestart}
             onMenu={() => { clearInterval(sampleTimerRef.current); onMenu() }}

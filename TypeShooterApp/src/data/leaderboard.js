@@ -1,16 +1,42 @@
-/* Leaderboard — localStorage persistence */
+/* Leaderboard — Supabase backed */
+import { supabase } from '../lib/supabase.js'
 
-const KEYS = { normal: 'ts_lb_normal', survival: 'ts_lb_survival' }
+const WPM_CAP = 250
 
-export function saveScore(mode, entry) {
-  const key = KEYS[mode] || KEYS.normal
-  let board = loadBoard(key)
-  const score = mode === 'survival' ? (entry.chars || 0) : (entry.wpm || 0)
-  board.push({ name: entry.name || 'Player', score, diff: entry.diff || mode, date: Date.now() })
-  board.sort((a, b) => b.score - a.score)
-  try { localStorage.setItem(key, JSON.stringify(board.slice(0, 10))) } catch(_) {}
+/**
+ * saveScore — inserts one row. Returns { error } or {}.
+ */
+export async function saveScore(mode, { username, wpm, accuracy, errors, diff }) {
+  const clampedWpm = Math.min(Math.round(wpm || 0), WPM_CAP)
+  if (clampedWpm <= 0) return { error: 'invalid WPM' }
+
+  const { error } = await supabase.from('leaderboard').insert({
+    username: (username || 'Player').trim().slice(0, 20) || 'Player',
+    wpm:      clampedWpm,
+    accuracy: Math.round(accuracy ?? 100),
+    errors:   Math.round(errors   ?? 0),
+    mode,
+    diff:     diff || mode,
+  })
+
+  if (error) console.warn('[leaderboard] save error:', error.message)
+  return error ? { error: error.message } : {}
 }
 
-export function loadBoard(key) {
-  try { return JSON.parse(localStorage.getItem(key)) || [] } catch(_) { return [] }
+/**
+ * fetchBoard — top N scores for a given mode, ordered by WPM desc.
+ */
+export async function fetchBoard(mode, limit = 10) {
+  const { data, error } = await supabase
+    .from('leaderboard')
+    .select('username, wpm, accuracy, errors, diff, created_at')
+    .eq('mode', mode)
+    .order('wpm', { ascending: false })
+    .limit(limit)
+
+  if (error) {
+    console.warn('[leaderboard] fetch error:', error.message)
+    return []
+  }
+  return data || []
 }
