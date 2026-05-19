@@ -82,11 +82,11 @@ export default function MenuScreen({ onNormal, onSurvival, onVersus, onLeaderboa
             src={titleLogoImg}
             alt="TypeShooter icon"
             style={{
-              width: 140,
-              maxWidth: '40vw',
+              width: 200,
+              maxWidth: '45vw',
               height: 'auto',
-              marginBottom: 12,
-              filter: 'drop-shadow(0 0 28px rgba(59,185,255,0.7))',
+              marginBottom: 8,
+              filter: 'drop-shadow(0 0 32px rgba(59,185,255,0.75))',
             }}
           />
           <h1 className="logo-title">
