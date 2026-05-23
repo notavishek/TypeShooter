@@ -191,9 +191,6 @@ Hard mode intentionally uses **long paragraphs** so the alien pressure has time 
 
 ---
 
-## 📄 License
-
-MIT — do whatever you want with it.
 
 ---
 
